@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -40,6 +41,18 @@ namespace Vreval.Platform
             return _client.Execute(request);
         }
 
+        public async Task<List<Checkpoint>> GetCheckpointsAsync(string projectId, string bearerToken)
+        {
+            var request = new RestRequest($"/projects/{projectId}/checkpoints", Method.GET);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
+            request.AddHeader("Authorization", $"Bearer {bearerToken}");
+
+            var result = await _client.ExecuteAsync<string>(request);
+            
+            return DeserializeCheckpoints(result.Content);
+        }
+
         public IRestResponse PostCheckpoints(string checkpoints, string projectId, string bearerToken)
         {
             var request = new RestRequest($"/projects/{projectId}/checkpoint-collections", Method.POST);
@@ -50,6 +63,20 @@ namespace Vreval.Platform
             request.AddParameter("application/json", checkpoints, ParameterType.RequestBody);
             
             return _client.Execute(request);
+        }
+
+        public async Task<string> PostCheckpointsAsync(List<Checkpoint> checkpoints, string projectId,
+            string bearerToken)
+        {
+            var request = new RestRequest($"/projects/{projectId}/checkpoint-collections", Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
+            request.AddHeader("Authorization", $"Bearer {bearerToken}");
+
+            request.AddParameter("application/json", SerializeCheckpoints(checkpoints), ParameterType.RequestBody);
+            var result = await _client.ExecuteAsync<string>(request);
+            
+            return result.Content;
         }
 
         public List<Checkpoint> DeserializeCheckpoints(string data)
