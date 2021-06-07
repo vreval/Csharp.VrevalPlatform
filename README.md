@@ -9,7 +9,7 @@ APP_TOKEN=
 CHECKPOINT_CREDS=
 ```
 
-This project contains an example .env file. Fill in the appropriate information for your environment. Then load this data during runtime. Read [this article by "Dusted Codes"](https://dusted.codes/dotenv-in-dotnet) explaining how.
+This project contains an .env.example file. Fill in the appropriate information for your environment. Then load this data during runtime. Read [this article by "Dusted Codes"](https://dusted.codes/dotenv-in-dotnet) explaining how.
 
 ## Getting checkpoints
 ```c#
