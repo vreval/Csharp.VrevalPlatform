@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json.Serialization;
-using Vreval.Library;
 
 namespace Vreval.Platform
 {

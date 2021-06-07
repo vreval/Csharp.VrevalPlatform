@@ -51,8 +51,9 @@
         <Compile Include="src\DataObjects\CadData.cs" />
         <Compile Include="src\DataObjects\Checkpoint.cs" />
         <Compile Include="src\DataObjects\CheckpointTemplate.cs" />
+        <Compile Include="src\Helpers.cs" />
         <Compile Include="src\PlatformAdapter.cs" />
-        <Compile Include="VrevalDataObjectResolver.cs" />
+        <Compile Include="src\VrevalDataObjectResolver.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

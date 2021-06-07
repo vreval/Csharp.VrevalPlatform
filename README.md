@@ -21,8 +21,9 @@ public static void Main(string[] args)
     var platform = new PlatformAdapter(Environment.GetEnvironmentVariable("API_BASE_URL"));
     var creds = Environment.GetEnvironmentVariable("CHECKPOINT_CREDS").Split('.');
     
-    string response = platform.GetCheckpoints(creds[0], creds[1]).Content;
-    List<Checkpoint> checkpoints = platform.DeserializeCheckpoints(response);
+    var res = platform.GetCheckpoints(creds[0], creds[1]);
+    var checkpoints = platform.DeserializeCheckpoints(res.Content);
+    checkpoints.ForEach(checkpoint => Console.WriteLine(checkpoint.Name));
 }
 ```
 
