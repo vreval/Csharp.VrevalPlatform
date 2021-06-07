@@ -20,6 +20,15 @@ namespace Vreval.Platform
                 ContractResolver = new VrevalDataObjectResolver()
             };
         }
+
+        public IRestResponse GetComponentDefaults(string componentSlug = "")
+        {
+            var request = new RestRequest($"/component-defaults", Method.GET);
+            request.AddHeader("Accept", "application/json");
+            request.AddParameter("like", componentSlug);
+
+            return _client.Execute(request);
+        }
         
         public IRestResponse GetCheckpoints(string projectId, string bearerToken)
         {

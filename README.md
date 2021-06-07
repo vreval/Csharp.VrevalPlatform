@@ -1,4 +1,8 @@
-﻿# Usage
+﻿## Vreval-Platform Adapter
+
+This little project helps making api request against the VREVAL rest api. Currently it only supports getting/posting checkpoints and retrieving component defaults. In time this project is supposed to be able to make common requests needed, for external C# applications to function and to encapsulate some of the complexity that may be necessary for such requests.
+
+# Usage
 
 ## .env
 
@@ -65,3 +69,25 @@ public static void Main(string[] args)
     Console.WriteLine(response.Content);
 }
 ```
+
+## Getting Component Defaults
+
+```c#
+public static void Main(string[] args)
+{
+    var dotEnv = Path.Combine(Directory.GetCurrentDirectory(), ".env");
+    DotEnv.Load(dotEnv);
+    
+    var platform = new PlatformAdapter(Environment.GetEnvironmentVariable("API_BASE_URL"));
+
+    var response = platform.GetComponentDefaults("checkpoint");
+    Console.WriteLine(response.Content);
+}
+```
+
+`GetComponentDefaults` also accepts the following arguments:
+
+- `form-field`
+- `task`
+- `playlist`
+- `evaluation`
