@@ -10,6 +10,8 @@ This little project helps making api request against the VREVAL rest api. Curren
 BASE_URL=http://vreval.test
 API_BASE_URL=http://vreval.test/api/v1
 APP_TOKEN=
+
+// This variable should store the Access-Token you will find on the Vreval platform in the "How to create checkpoints" section
 CHECKPOINT_CREDS=
 ```
 
