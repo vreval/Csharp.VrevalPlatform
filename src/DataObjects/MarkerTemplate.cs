@@ -1,8 +1,10 @@
-﻿namespace Vreval.Platform.DataObjects
+﻿using Newtonsoft.Json;
+
+namespace Vreval.Platform.DataObjects
 {
     public class MarkerTemplate
     {
-        public MarkerCadData CadData = new MarkerCadData();
+        [JsonProperty("cad_data")] public MarkerCadData CadData = new MarkerCadData();
         public float Height = 1.2f;
         public string HeightUnit = Unit.meters.ToString();
         public float Perimeter = 3f;

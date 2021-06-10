@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -50,7 +51,7 @@ namespace Vreval.Platform
 
             var result = await _client.ExecuteAsync<string>(request);
             
-            return DeserializeMarkers(result.Content);
+            return DeserializeComponents<Marker>(result.Content);
         }
 
         public IRestResponse PostMarkers(string checkpoints, string projectId, string bearerToken)
@@ -79,9 +80,9 @@ namespace Vreval.Platform
             return result.Content;
         }
 
-        public List<Marker> DeserializeMarkers(string data)
+        public List<T> DeserializeComponents<T>(string data)
         {
-            return JObject.Parse(data).SelectToken("data")?.ToObject<List<Marker>>(_serializer);
+            return JObject.Parse(data).SelectToken("data")?.ToObject<List<T>>(_serializer);
         }
 
         public string SerializeMarkers(List<Marker> checkpoints)
