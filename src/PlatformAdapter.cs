@@ -41,7 +41,7 @@ namespace Vreval.Platform
             return _client.Execute(request);
         }
 
-        public async Task<List<Checkpoint>> GetCheckpointsAsync(string projectId, string bearerToken)
+        public async Task<List<Marker>> GetCheckpointsAsync(string projectId, string bearerToken)
         {
             var request = new RestRequest($"/projects/{projectId}/checkpoints", Method.GET);
             request.AddHeader("Accept", "application/json");
@@ -65,7 +65,7 @@ namespace Vreval.Platform
             return _client.Execute(request);
         }
 
-        public async Task<string> PostCheckpointsAsync(List<Checkpoint> checkpoints, string projectId,
+        public async Task<string> PostCheckpointsAsync(List<Marker> checkpoints, string projectId,
             string bearerToken)
         {
             var request = new RestRequest($"/projects/{projectId}/checkpoint-collections", Method.POST);
@@ -79,12 +79,12 @@ namespace Vreval.Platform
             return result.Content;
         }
 
-        public List<Checkpoint> DeserializeCheckpoints(string data)
+        public List<Marker> DeserializeCheckpoints(string data)
         {
-            return JObject.Parse(data).SelectToken("data")?.ToObject<List<Checkpoint>>(_serializer);
+            return JObject.Parse(data).SelectToken("data")?.ToObject<List<Marker>>(_serializer);
         }
 
-        public string SerializeCheckpoints(List<Checkpoint> checkpoints)
+        public string SerializeCheckpoints(List<Marker> checkpoints)
         {
             return "{\"data\":" + JArray.FromObject(checkpoints, _serializer) + "}";
         }

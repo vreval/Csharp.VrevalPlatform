@@ -48,9 +48,12 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="src\DataObjects\CadData.cs" />
-        <Compile Include="src\DataObjects\Checkpoint.cs" />
-        <Compile Include="src\DataObjects\CheckpointTemplate.cs" />
+        <Compile Include="src\DataObjects\MarkerCadData.cs" />
+        <Compile Include="src\DataObjects\Marker.cs" />
+        <Compile Include="src\DataObjects\MarkerTemplate.cs" />
+        <Compile Include="src\DataObjects\MarkerType.cs" />
+        <Compile Include="src\DataObjects\MarkerVisibility.cs" />
+        <Compile Include="src\DataObjects\Unit.cs" />
         <Compile Include="src\DotEnv.cs" />
         <Compile Include="src\Helpers.cs" />
         <Compile Include="src\PlatformAdapter.cs" />

@@ -1,6 +1,6 @@
 ﻿## Vreval-Platform Adapter
 
-This little project helps making api request against the VREVAL rest api. Currently it only supports getting/posting checkpoints and retrieving component defaults. In time this project is supposed to be able to make common requests needed, for external C# applications to function and to encapsulate some of the complexity that may be necessary for such requests.
+This little project helps making api request against the VREVAL rest api. Currently it only supports getting/posting markers and retrieving component defaults. In time this project is supposed to be able to make common requests needed, for third party C# applications to function and to encapsulate some of the complexity that may be necessary for such requests.
 
 # Usage
 
@@ -17,7 +17,7 @@ CHECKPOINT_CREDS=
 
 This project contains an .env.example file. Fill in the appropriate information for your environment. Then load this data during runtime. Read [this article by "Dusted Codes"](https://dusted.codes/dotenv-in-dotnet) explaining how.
 
-## Getting checkpoints
+## Getting markers
 ```c#
 public static void Main(string[] args)
 {
@@ -33,7 +33,7 @@ public static void Main(string[] args)
 }
 ```
 
-## Posting checkpoints
+## Posting markers
 ```c#
 public static void Main(string[] args)
 {

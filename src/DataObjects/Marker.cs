@@ -1,12 +1,13 @@
 ﻿namespace Vreval.Platform.DataObjects
 {
-    public class Checkpoint
+    public class Marker
     {
         public int CadId;
         public string CreatedFormatted;
+        public string ProjectId;
         public int Id;
         public string Name;
-        public CheckpointTemplate Template;
+        public MarkerTemplate Template;
         public int TypeId;
         public string UpdatedRelative;
     }
