@@ -43,34 +43,31 @@ public static void Main(string[] args)
     var platform = new PlatformAdapter(Environment.GetEnvironmentVariable("API_BASE_URL"));
     var creds = Environment.GetEnvironmentVariable("CHECKPOINT_CREDS").Split('.');
     
-    var markers = new List<Marker>()
+    var markers = new List<Marker>
     {
-        new Marker()
+        new Marker
         {
-            Name = "Test",
-            TypeId = 7,
+            Name = "My test marker",
             CadId = 123,
             Template = new MarkerTemplate()
-        },
-        new Marker()
-        {
-            Name = "Test",
-            TypeId = 8,
-            CadId = 123,
-            Template = new MarkerTemplate()
-        },
-        new Marker()
-        {
-            Name = "Test",
-            TypeId = 9,
-            CadId = 123,
-            Template = new MarkerTemplate()
+            {
+                Visibility = MarkerVisibility.inside_perimeter.ToString(),
+                CadData = new MarkerCadData()
+                {
+                    MarkerName = "My new marker",
+                    MarkerDescription = "Marker description",
+                    Position = new[]{1.234f,14.567f,-123.123f},
+                    Type = MarkerType.Checkpoint.ToString()
+                }
+            }
         },
     };
+    
     var response = platform.PostMarkers(platform.SerializeMarkers(markers), creds[0], creds[1]);
     Console.WriteLine(response.Content);
 }
 ```
+Any omitted fields will will keep their default value. If you need different default values when sending markers, just edit the appropriate data object.
 
 ## Getting Component Defaults
 

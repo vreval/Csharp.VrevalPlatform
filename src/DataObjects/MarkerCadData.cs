@@ -6,12 +6,12 @@
         public string MarkerDescription = "";
         public string MarkerName = "Default Marker";
         public float[] Position = {0f, 0f, 0f};
-        public Unit PositionUnit = Unit.meters;
+        public string PositionUnit = Unit.meters.ToString();
         public float ProjectRotation = 0f;
-        public Unit ProjectRotationUnit = Unit.degrees;
+        public string ProjectRotationUnit = Unit.degrees.ToString();
         public float[] Rotation = {0f, 0f, 0f};
-        public Unit RotationUnit = Unit.degrees;
+        public string RotationUnit = Unit.degrees.ToString();
         public float[] SurveyPoint = {0f, 0f, 0f};
-        public MarkerType Type = MarkerType.Checkpoint;
+        public string Type = MarkerType.Checkpoint.ToString();
     }
 }

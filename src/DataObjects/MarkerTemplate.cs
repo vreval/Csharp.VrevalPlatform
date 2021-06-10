@@ -3,13 +3,14 @@
     public class MarkerTemplate
     {
         public MarkerCadData CadData = new MarkerCadData();
-        public string Description = "";
         public float Height = 1.2f;
-        public Unit HeightUnit = Unit.meters;
+        public string HeightUnit = Unit.meters.ToString();
         public float Perimeter = 3f;
         public float PerimeterDistance = 12f;
-        public Unit PerimeterDistanceUnit = Unit.meters;
-        public Unit PerimeterUnit = Unit.meters;
-        public MarkerVisibility Visibility = MarkerVisibility.always;
+        public string PerimeterDistanceUnit = Unit.meters.ToString();
+        public string PerimeterUnit = Unit.meters.ToString();
+        public float PlacementDistance = 1.5f;
+        public string PlacementDistanceUnit = Unit.meters.ToString();
+        public string Visibility = MarkerVisibility.always.ToString();
     }
 }
