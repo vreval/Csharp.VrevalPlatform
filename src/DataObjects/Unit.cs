@@ -2,6 +2,6 @@
 {
     public enum Unit
     {
-        meters, degrees, days, sekonds
+        meters, degrees, days, seconds
     }
 }
