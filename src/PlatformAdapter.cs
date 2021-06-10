@@ -31,7 +31,7 @@ namespace Vreval.Platform
             return _client.Execute(request);
         }
         
-        public IRestResponse GetCheckpoints(string projectId, string bearerToken)
+        public IRestResponse GetMarkers(string projectId, string bearerToken)
         {
             var request = new RestRequest($"/projects/{projectId}/checkpoints", Method.GET);
             request.AddHeader("Accept", "application/json");
@@ -41,7 +41,7 @@ namespace Vreval.Platform
             return _client.Execute(request);
         }
 
-        public async Task<List<Marker>> GetCheckpointsAsync(string projectId, string bearerToken)
+        public async Task<List<Marker>> GetMarkersAsync(string projectId, string bearerToken)
         {
             var request = new RestRequest($"/projects/{projectId}/checkpoints", Method.GET);
             request.AddHeader("Accept", "application/json");
@@ -50,10 +50,10 @@ namespace Vreval.Platform
 
             var result = await _client.ExecuteAsync<string>(request);
             
-            return DeserializeCheckpoints(result.Content);
+            return DeserializeMarkers(result.Content);
         }
 
-        public IRestResponse PostCheckpoints(string checkpoints, string projectId, string bearerToken)
+        public IRestResponse PostMarkers(string checkpoints, string projectId, string bearerToken)
         {
             var request = new RestRequest($"/projects/{projectId}/checkpoint-collections", Method.POST);
             request.AddHeader("Accept", "application/json");
@@ -65,7 +65,7 @@ namespace Vreval.Platform
             return _client.Execute(request);
         }
 
-        public async Task<string> PostCheckpointsAsync(List<Marker> checkpoints, string projectId,
+        public async Task<string> PostMarkersAsync(List<Marker> checkpoints, string projectId,
             string bearerToken)
         {
             var request = new RestRequest($"/projects/{projectId}/checkpoint-collections", Method.POST);
@@ -73,18 +73,18 @@ namespace Vreval.Platform
             request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
 
-            request.AddParameter("application/json", SerializeCheckpoints(checkpoints), ParameterType.RequestBody);
+            request.AddParameter("application/json", SerializeMarkers(checkpoints), ParameterType.RequestBody);
             var result = await _client.ExecuteAsync<string>(request);
             
             return result.Content;
         }
 
-        public List<Marker> DeserializeCheckpoints(string data)
+        public List<Marker> DeserializeMarkers(string data)
         {
             return JObject.Parse(data).SelectToken("data")?.ToObject<List<Marker>>(_serializer);
         }
 
-        public string SerializeCheckpoints(List<Marker> checkpoints)
+        public string SerializeMarkers(List<Marker> checkpoints)
         {
             return "{\"data\":" + JArray.FromObject(checkpoints, _serializer) + "}";
         }

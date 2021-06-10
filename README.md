@@ -11,7 +11,7 @@ BASE_URL=http://vreval.test
 API_BASE_URL=http://vreval.test/api/v1
 APP_TOKEN=
 
-// This variable should store the Access-Token you will find on the Vreval platform in the "How to create checkpoints" section
+// This variable should store the Access-Token you will find on the Vreval platform in the "How to create markers" section
 CHECKPOINT_CREDS=
 ```
 
@@ -27,9 +27,9 @@ public static void Main(string[] args)
     var platform = new PlatformAdapter(Environment.GetEnvironmentVariable("API_BASE_URL"));
     var creds = Environment.GetEnvironmentVariable("CHECKPOINT_CREDS").Split('.');
     
-    var res = platform.GetCheckpoints(creds[0], creds[1]);
-    var checkpoints = platform.DeserializeCheckpoints(res.Content);
-    checkpoints.ForEach(checkpoint => Console.WriteLine(checkpoint.Name));
+    var res = platform.GetMarkers(creds[0], creds[1]);
+    var markers = platform.DeserializeMarkers(res.Content);
+    markers.ForEach(checkpoint => Console.WriteLine(checkpoint.Name));
 }
 ```
 
@@ -43,31 +43,31 @@ public static void Main(string[] args)
     var platform = new PlatformAdapter(Environment.GetEnvironmentVariable("API_BASE_URL"));
     var creds = Environment.GetEnvironmentVariable("CHECKPOINT_CREDS").Split('.');
     
-    var checkpoints = new List<Checkpoint>()
+    var markers = new List<Marker>()
     {
-        new Checkpoint()
+        new Marker()
         {
             Name = "Test",
             TypeId = 7,
             CadId = 123,
-            Template = new CheckpointTemplate()
+            Template = new MarkerTemplate()
         },
-        new Checkpoint()
+        new Marker()
         {
             Name = "Test",
             TypeId = 8,
             CadId = 123,
-            Template = new CheckpointTemplate()
+            Template = new MarkerTemplate()
         },
-        new Checkpoint()
+        new Marker()
         {
             Name = "Test",
             TypeId = 9,
             CadId = 123,
-            Template = new CheckpointTemplate()
+            Template = new MarkerTemplate()
         },
     };
-    var response = platform.PostCheckpoints(platform.SerializeCheckpoints(checkpoints), creds[0], creds[1]);
+    var response = platform.PostMarkers(platform.SerializeMarkers(markers), creds[0], creds[1]);
     Console.WriteLine(response.Content);
 }
 ```

@@ -2,7 +2,7 @@
 {
     public class MarkerTemplate
     {
-        public MarkerCadData CadData;
+        public MarkerCadData CadData = new MarkerCadData();
         public string Description = "";
         public float Height = 1.2f;
         public Unit HeightUnit = Unit.meters;
