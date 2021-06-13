@@ -24,6 +24,18 @@ namespace Vreval.Platform
             };
         }
 
+        public async Task<KeyValuePair<string, string>> CheckAccessToken(AccessToken accessToken)
+        {
+            var request = new RestRequest($"/projects/{accessToken.ResourceId}/check-access-token", Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
+            request.AddHeader("Authorization", $"Bearer {accessToken.BearerToken}");
+
+            var result = await _client.ExecuteAsync<string>(request);
+
+            return new KeyValuePair<string, string>(result.Content, result.StatusCode.ToString());
+        }
+
         public IRestResponse GetComponentDefaults(string componentSlug = "")
         {
             var request = new RestRequest("/component-defaults", Method.GET);
