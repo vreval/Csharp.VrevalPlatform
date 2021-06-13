@@ -48,12 +48,15 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="src\AccessToken.cs" />
         <Compile Include="src\DataObjects\MarkerCadData.cs" />
         <Compile Include="src\DataObjects\Marker.cs" />
         <Compile Include="src\DataObjects\MarkerDefault.cs" />
         <Compile Include="src\DataObjects\MarkerTemplate.cs" />
         <Compile Include="src\DataObjects\MarkerType.cs" />
         <Compile Include="src\DataObjects\MarkerVisibility.cs" />
+        <Compile Include="src\DataObjects\ModelBundle.cs" />
+        <Compile Include="src\DataObjects\Project.cs" />
         <Compile Include="src\DataObjects\Unit.cs" />
         <Compile Include="src\DotEnv.cs" />
         <Compile Include="src\Helpers.cs" />
@@ -81,5 +84,13 @@
     <Target Name="AfterBuild">
     </Target>
     -->
-
+    <ItemGroup>
+        <Libs Include="$(OutputPath)\*.dll" Exclude="UnityEngine.dll" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="packages.config" />
+    </ItemGroup>
+    <Target Name="AfterBuild">
+        <Copy SourceFiles="@(Libs)" DestinationFolder="$(SolutionDir)..\Vreval.Client\Assets\Plugins\VrevalPlatform" ContinueOnError="true" />
+    </Target>
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,11 +14,11 @@ namespace Vreval.Platform
     {
         private readonly RestClient _client;
         private readonly JsonSerializer _serializer;
-        
+
         public PlatformAdapter(string baseUri)
         {
             _client = new RestClient(baseUri);
-            _serializer = new JsonSerializer()
+            _serializer = new JsonSerializer
             {
                 ContractResolver = new VrevalDataObjectResolver()
             };
@@ -25,58 +26,68 @@ namespace Vreval.Platform
 
         public IRestResponse GetComponentDefaults(string componentSlug = "")
         {
-            var request = new RestRequest($"/component-defaults", Method.GET);
+            var request = new RestRequest("/component-defaults", Method.GET);
             request.AddHeader("Accept", "application/json");
             request.AddParameter("like", componentSlug);
 
             return _client.Execute(request);
         }
-        
-        public IRestResponse GetMarkers(string projectId, string bearerToken)
+
+        public async Task<List<Project>> GetProjectsAsync(AccessToken accessToken)
         {
-            var request = new RestRequest($"/projects/{projectId}/checkpoints", Method.GET);
+            var request = new RestRequest($"/projects/{accessToken.ResourceId}", Method.GET);
             request.AddHeader("Accept", "application/json");
             request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
-            request.AddHeader("Authorization", $"Bearer {bearerToken}");
-            
+            request.AddHeader("Authorization", $"Bearer {accessToken.BearerToken}");
+
+            var result = await _client.ExecuteAsync<string>(request);
+
+            return DeserializeComponents<Project>(result.Content);
+        }
+
+        public IRestResponse GetMarkers(AccessToken accessToken)
+        {
+            var request = new RestRequest($"/projects/{accessToken.ResourceId}/checkpoints", Method.GET);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
+            request.AddHeader("Authorization", $"Bearer {accessToken.BearerToken}");
+
             return _client.Execute(request);
         }
 
-        public async Task<List<Marker>> GetMarkersAsync(string projectId, string bearerToken)
+        public async Task<List<Marker>> GetMarkersAsync(AccessToken accessToken)
         {
-            var request = new RestRequest($"/projects/{projectId}/checkpoints", Method.GET);
+            var request = new RestRequest($"/projects/{accessToken.ResourceId}/checkpoints", Method.GET);
             request.AddHeader("Accept", "application/json");
             request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
-            request.AddHeader("Authorization", $"Bearer {bearerToken}");
+            request.AddHeader("Authorization", $"Bearer {accessToken.BearerToken}");
 
             var result = await _client.ExecuteAsync<string>(request);
-            
+
             return DeserializeComponents<Marker>(result.Content);
         }
 
-        public IRestResponse PostMarkers(string checkpoints, string projectId, string bearerToken)
+        public IRestResponse PostMarkers(string markers, AccessToken accessToken)
         {
-            var request = new RestRequest($"/projects/{projectId}/checkpoint-collections", Method.POST);
+            var request = new RestRequest($"/projects/{accessToken.ResourceId}/checkpoint-collections", Method.POST);
             request.AddHeader("Accept", "application/json");
             request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
-            request.AddHeader("Authorization", $"Bearer {bearerToken}");
+            request.AddHeader("Authorization", $"Bearer {accessToken.BearerToken}");
+            request.AddParameter("application/json", markers, ParameterType.RequestBody);
 
-            request.AddParameter("application/json", checkpoints, ParameterType.RequestBody);
-            
             return _client.Execute(request);
         }
 
-        public async Task<string> PostMarkersAsync(List<Marker> checkpoints, string projectId,
-            string bearerToken)
+        public async Task<string> PostMarkersAsync(List<Marker> markers, AccessToken accessToken)
         {
-            var request = new RestRequest($"/projects/{projectId}/checkpoint-collections", Method.POST);
+            var request = new RestRequest($"/projects/{accessToken.ResourceId}/checkpoint-collections", Method.POST);
             request.AddHeader("Accept", "application/json");
             request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
-            request.AddHeader("Authorization", $"Bearer {bearerToken}");
+            request.AddHeader("Authorization", $"Bearer {accessToken.BearerToken}");
+            request.AddParameter("application/json", SerializeComponents(markers), ParameterType.RequestBody);
 
-            request.AddParameter("application/json", SerializeMarkers(checkpoints), ParameterType.RequestBody);
             var result = await _client.ExecuteAsync<string>(request);
-            
+
             return result.Content;
         }
 
@@ -85,9 +96,26 @@ namespace Vreval.Platform
             return JObject.Parse(data).SelectToken("data")?.ToObject<List<T>>(_serializer);
         }
 
-        public string SerializeMarkers(List<Marker> checkpoints)
+        public string SerializeComponents<T>(List<T> components)
         {
-            return "{\"data\":" + JArray.FromObject(checkpoints, _serializer) + "}";
+            return "{\"data\":" + JArray.FromObject(components, _serializer) + "}";
+        }
+
+        public async Task DownloadAssetBundleAsync(string savePath, int modelId, AccessToken token)
+        {
+            var request = new RestRequest($"/model-downloads/{modelId}", Method.GET);
+            request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
+            request.AddHeader("Authorization", $"Bearer {token.BearerToken}");
+
+            var result = await _client.ExecuteAsync<byte[]>(request);
+
+            if (result.StatusCode != HttpStatusCode.OK)
+            {
+                Console.WriteLine(result.Content);
+                return;
+            }
+
+            File.WriteAllBytes(savePath, result.RawBytes);
         }
     }
 }
