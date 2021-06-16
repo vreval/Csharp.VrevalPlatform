@@ -20,7 +20,8 @@ namespace Vreval.Platform
             _client = new RestClient(baseUri);
             _serializer = new JsonSerializer
             {
-                ContractResolver = new VrevalDataObjectResolver()
+                ContractResolver = new VrevalDataObjectResolver(),
+                TypeNameHandling = TypeNameHandling.Auto,
             };
         }
 

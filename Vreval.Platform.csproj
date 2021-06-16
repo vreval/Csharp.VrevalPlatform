@@ -49,6 +49,14 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\AccessToken.cs" />
+        <Compile Include="src\DataObjects\Forms\Form.cs" />
+        <Compile Include="src\DataObjects\Forms\FormField.cs" />
+        <Compile Include="src\DataObjects\Forms\FormFieldType.cs" />
+        <Compile Include="src\DataObjects\Forms\Rating.cs" />
+        <Compile Include="src\DataObjects\Forms\RatingOption.cs" />
+        <Compile Include="src\DataObjects\Forms\Selection.cs" />
+        <Compile Include="src\DataObjects\Forms\SelectionOption.cs" />
+        <Compile Include="src\DataObjects\Forms\Template.cs" />
         <Compile Include="src\DataObjects\MarkerCadData.cs" />
         <Compile Include="src\DataObjects\Marker.cs" />
         <Compile Include="src\DataObjects\MarkerDefault.cs" />
@@ -61,6 +69,7 @@
         <Compile Include="src\DotEnv.cs" />
         <Compile Include="src\Helpers.cs" />
         <Compile Include="src\PlatformAdapter.cs" />
+        <Compile Include="src\FormFieldTemplateConverter.cs" />
         <Compile Include="src\VrevalDataObjectResolver.cs" />
     </ItemGroup>
     <ItemGroup>
