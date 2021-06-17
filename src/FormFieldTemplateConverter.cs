@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Vreval.Platform.DataObjects.Forms;
@@ -9,27 +8,27 @@ namespace Vreval.Platform
 {
     public class FormFieldTemplateConverter : JsonConverter
     {
-        private Dictionary<string, Func<JObject, Template>> classMap = new Dictionary<string, Func<JObject, Template>>();
+        private readonly Dictionary<string, Func<JObject, Template>> _classMap = new Dictionary<string, Func<JObject, Template>>();
 
         public FormFieldTemplateConverter()
         {
-            classMap["Header"] = o => new Template() {Text = (string) o["text"], TypeName = "Header"};
-            classMap["Paragraph"] = o => new Template() {Text = (string) o["text"], TypeName = "Paragraph"};
-            classMap["Section"] = o => new Template() {Text = (string) o["text"], TypeName = "Section"};
-            classMap["Selection"] = o => new Selection()
+            _classMap["Header"] = o => new Template() {Text = (string) o["text"], TypeName = "Header"};
+            _classMap["Paragraph"] = o => new Template() {Text = (string) o["text"], TypeName = "Paragraph"};
+            _classMap["Section"] = o => new Template() {Text = (string) o["text"], TypeName = "Section"};
+            _classMap["Selection"] = o => new Selection()
             {
                 Text = (string) o["text"],
                 ShuffleOptions = (bool) o["shuffle_options"],
                 TypeName = "Selection"
             };
-            classMap["Rating"] = o => new Rating()
+            _classMap["Rating"] = o => new Rating()
             {
                 Text = (string) o["text"],
                 Levels = (int) o["levels"],
                 Options = o["options"].ToObject<RatingOption[]>(),
-                Symbols = (string) o["symbols"],
+                Symbols = (RatingSymbols) Enum.Parse(typeof(RatingSymbols), (string) o["symbols"] ?? "asc"),
                 Required = (bool) o["required"],
-                LevalsMax = (int) o["levels_max"],
+                LevelsMax = (int) o["levels_max"],
                 ShowLabels = (string) o["show_labels"],
                 TypeName = "Rating"
             };
@@ -44,7 +43,7 @@ namespace Vreval.Platform
         {
             JObject o = JObject.Load(reader);
             var type = (string)o["type_name"] ?? "Header";
-            return classMap[type](o);
+            return _classMap[type](o);
         }
 
         public override bool CanConvert(Type objectType)
