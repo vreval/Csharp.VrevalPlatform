@@ -51,6 +51,7 @@
         <Compile Include="src\AccessToken.cs" />
         <Compile Include="src\DataObjects\Forms\Form.cs" />
         <Compile Include="src\DataObjects\Forms\FormField.cs" />
+        <Compile Include="src\DataObjects\Forms\FormFieldTemplateConverter.cs" />
         <Compile Include="src\DataObjects\Forms\FormFieldType.cs" />
         <Compile Include="src\DataObjects\Forms\Rating.cs" />
         <Compile Include="src\DataObjects\Forms\RatingOption.cs" />
@@ -65,11 +66,24 @@
         <Compile Include="src\DataObjects\Markers\MarkerVisibility.cs" />
         <Compile Include="src\DataObjects\ModelBundle.cs" />
         <Compile Include="src\DataObjects\Project.cs" />
+        <Compile Include="src\DataObjects\Scenarios\AbTest.cs" />
+        <Compile Include="src\DataObjects\Scenarios\AbTestWaypoint.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Annotation.cs" />
+        <Compile Include="src\DataObjects\Scenarios\AvatarSetting.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Model.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Placing.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Questionnaire.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Scenario.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Task.cs" />
+        <Compile Include="src\DataObjects\Scenarios\TaskTemplateConverter.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Template.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Wayfinding.cs" />
+        <Compile Include="src\DataObjects\Scenarios\WayfindingWaypoint.cs" />
+        <Compile Include="src\DataObjects\Scenarios\Waypoint.cs" />
         <Compile Include="src\DataObjects\Unit.cs" />
         <Compile Include="src\DotEnv.cs" />
         <Compile Include="src\Helpers.cs" />
         <Compile Include="src\PlatformAdapter.cs" />
-        <Compile Include="src\FormFieldTemplateConverter.cs" />
         <Compile Include="src\VrevalDataObjectResolver.cs" />
     </ItemGroup>
     <ItemGroup>
