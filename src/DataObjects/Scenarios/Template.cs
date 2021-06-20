@@ -7,6 +7,7 @@ namespace Vreval.Platform.DataObjects.Scenarios
     public class Template
     {
         public string Text;
+        public string TypeName;
         public string Description;
         public int CheckpointId;
         public int FormId;

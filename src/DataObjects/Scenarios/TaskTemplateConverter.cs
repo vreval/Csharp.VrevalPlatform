@@ -23,6 +23,7 @@ namespace Vreval.Platform.DataObjects.Scenarios
             return new T()
             {
                 Text = (string) jObject["text"],
+                TypeName = (string) jObject["type_name"],
                 Description = (string) jObject["description"],
                 CheckpointId = (int) jObject["checkpoint_id"],
                 FormId = (int) jObject["form_id"],
