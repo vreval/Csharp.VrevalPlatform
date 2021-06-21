@@ -11,6 +11,7 @@ namespace Vreval.Platform.DataObjects.Scenarios
 
         public TaskTemplateConverter()
         {
+            _classMap["Default"] = CreateDefault;
             _classMap["Placing"] = CreatePlacing;
             _classMap["Annotation"] = CreateAnnotation;
             _classMap["Questionnaire"] = CreateQuestionnaire;
@@ -83,6 +84,11 @@ namespace Vreval.Platform.DataObjects.Scenarios
             return template;
         }
 
+        private Template CreateDefault(JObject jObject)
+        {
+            return CreateTemplate<Template>(jObject);
+        }
+        
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
