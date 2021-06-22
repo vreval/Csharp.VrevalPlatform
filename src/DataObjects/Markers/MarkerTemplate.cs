@@ -11,6 +11,5 @@ namespace Vreval.Platform.DataObjects
         public string PerimeterRadiusUnit = Unit.meters.ToString();
         public float PlacementDistance = 1.5f;
         public string PlacementDistanceUnit = Unit.meters.ToString();
-        public string Visibility = MarkerVisibility.always.ToString();
     }
 }

@@ -36,6 +36,7 @@ namespace Vreval.Platform.DataObjects.Scenarios
                 HmdTracking = (bool) jObject["hmd_tracking"],
                 Models = jObject["models"].ToObject<List<Model>>(),
                 AvatarSettings = jObject["avatar_settings"].ToObject<AvatarSetting>(),
+                Visibility = (string)jObject["visibility"],
             };
         }
 

@@ -50,7 +50,6 @@ public static async Task Main(string[] args)
             CadId = 123,
             Template = new MarkerTemplate
             {
-                Visibility = MarkerVisibility.inside_perimeter.ToString(),
                 CadData = new MarkerCadData
                 {
                     MarkerName = "My new marker",
@@ -68,7 +67,6 @@ public static async Task Main(string[] args)
             CadId = 123,
             Template = new MarkerTemplate
             {
-                Visibility = MarkerVisibility.inside_perimeter.ToString(),
                 CadData = new MarkerCadData
                 {
                     MarkerName = "My new marker",

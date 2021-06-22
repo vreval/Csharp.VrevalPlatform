@@ -21,5 +21,6 @@ namespace Vreval.Platform.DataObjects.Scenarios
         public int HmdTrackingInterval;
         public List<Model> Models;
         public AvatarSetting AvatarSettings;
+        public string Visibility = MarkerVisibility.always.ToString();
     }
 }
