@@ -52,7 +52,7 @@ public static async Task Main(string[] args)
             {
                 CadData = new MarkerCadData
                 {
-                    MarkerDescription = "Marker description",
+                    MarkerDescription = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
                     Position = new[] {1.234f, 14.567f, -123.123f},
                     Type = MarkerType.Checkpoint.ToString()
                 },
@@ -68,7 +68,7 @@ public static async Task Main(string[] args)
             {
                 CadData = new MarkerCadData
                 {
-                    MarkerDescription = "Marker description",
+                    MarkerDescription = "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
                     Position = new[] {1.234f, 14.567f, -123.123f},
                     Type = MarkerType.Checkpoint.ToString()
                 },
