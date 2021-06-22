@@ -7,7 +7,6 @@ This little project helps making api request against the VREVAL rest api. Curren
 ## .env
 
 ```text
-BASE_URL=http://vreval.test
 API_BASE_URL=http://vreval.test/api/v1
 APP_TOKEN=
 
