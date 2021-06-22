@@ -4,7 +4,6 @@
     {
         public int CadId = 0;
         public string MarkerDescription = "";
-        public string MarkerName = "Default Marker";
         public float[] Position = {0f, 0f, 0f};
         public string PositionUnit = Unit.meters.ToString();
         public float ProjectRotation = 0f;
