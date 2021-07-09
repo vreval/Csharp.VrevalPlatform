@@ -19,7 +19,10 @@ namespace Vreval.Platform
             {
                 Text = (string) o["text"],
                 ShuffleOptions = (bool) o["shuffle_options"],
-                TypeName = "Selection"
+                TypeName = "Selection",
+                Options = o["options"].ToObject<SelectionOption[]>(),
+                Multiple = (bool) o["multiple"],
+                Required = (bool) o["required"]
             };
             _classMap["Rating"] = o => new Rating()
             {
