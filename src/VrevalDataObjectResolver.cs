@@ -2,7 +2,7 @@
 
 namespace Vreval.Platform
 {
-    class VrevalDataObjectResolver : DefaultContractResolver
+    public class VrevalDataObjectResolver : DefaultContractResolver
     {
         protected override string ResolvePropertyName(string propertyName)
         {

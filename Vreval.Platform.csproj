@@ -32,8 +32,8 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-          <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+        <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
         </Reference>
         <Reference Include="RestSharp, Version=106.11.8.0, Culture=neutral, PublicKeyToken=598062e77f915f75">
@@ -49,15 +49,27 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\AccessToken.cs" />
+        <Compile Include="src\Authentication\Classification.cs" />
+        <Compile Include="src\Authentication\ClassificationQuestion.cs" />
+        <Compile Include="src\Authentication\EvaluationData.cs" />
+        <Compile Include="src\Authentication\ParticipantAuthenticator.cs" />
+        <Compile Include="src\Authentication\ParticipantData.cs" />
+        <Compile Include="src\Authentication\ParticipantLogEntry.cs" />
         <Compile Include="src\DataObjects\Forms\Form.cs" />
         <Compile Include="src\DataObjects\Forms\FormField.cs" />
+        <Compile Include="src\DataObjects\Forms\FormFieldResult.cs" />
+        <Compile Include="src\DataObjects\Forms\FormFieldResultConverter.cs" />
         <Compile Include="src\DataObjects\Forms\FormFieldTemplateConverter.cs" />
         <Compile Include="src\DataObjects\Forms\FormFieldType.cs" />
         <Compile Include="src\DataObjects\Forms\Rating.cs" />
         <Compile Include="src\DataObjects\Forms\RatingOption.cs" />
+        <Compile Include="src\DataObjects\Forms\RatingItemResult.cs" />
+        <Compile Include="src\DataObjects\Forms\RatingResult.cs" />
         <Compile Include="src\DataObjects\Forms\Selection.cs" />
         <Compile Include="src\DataObjects\Forms\SelectionOption.cs" />
+        <Compile Include="src\DataObjects\Forms\SelectionResult.cs" />
         <Compile Include="src\DataObjects\Forms\Template.cs" />
+        <Compile Include="src\DataObjects\Group.cs" />
         <Compile Include="src\DataObjects\Markers\Marker.cs" />
         <Compile Include="src\DataObjects\Markers\MarkerCadData.cs" />
         <Compile Include="src\DataObjects\Markers\MarkerDefault.cs" />
@@ -66,7 +78,9 @@
         <Compile Include="src\DataObjects\Markers\MarkerVisibility.cs" />
         <Compile Include="src\DataObjects\ModelBundle.cs" />
         <Compile Include="src\DataObjects\Project.cs" />
+        <Compile Include="src\DataObjects\Results\TaskResult.cs" />
         <Compile Include="src\DataObjects\Scenarios\AbTest.cs" />
+        <Compile Include="src\DataObjects\Scenarios\AbTestResult.cs" />
         <Compile Include="src\DataObjects\Scenarios\AbTestWaypoint.cs" />
         <Compile Include="src\DataObjects\Scenarios\Annotation.cs" />
         <Compile Include="src\DataObjects\Scenarios\AvatarSetting.cs" />
@@ -83,6 +97,9 @@
         <Compile Include="src\DataObjects\Unit.cs" />
         <Compile Include="src\DotEnv.cs" />
         <Compile Include="src\Helpers.cs" />
+        <Compile Include="src\IClassifiable.cs" />
+        <Compile Include="src\IProfile.cs" />
+        <Compile Include="src\Participant.cs" />
         <Compile Include="src\PlatformAdapter.cs" />
         <Compile Include="src\VrevalDataObjectResolver.cs" />
     </ItemGroup>

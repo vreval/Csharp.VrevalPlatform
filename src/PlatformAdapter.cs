@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using Vreval.Platform.DataObjects;
+using Vreval.Platform.DataObjects.Results;
 
 namespace Vreval.Platform
 {

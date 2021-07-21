@@ -12,9 +12,21 @@ namespace Vreval.Platform
 
         public FormFieldTemplateConverter()
         {
-            _classMap["Header"] = o => new Template() {Text = (string) o["text"], TypeName = "Header"};
-            _classMap["Paragraph"] = o => new Template() {Text = (string) o["text"], TypeName = "Paragraph"};
-            _classMap["Section"] = o => new Template() {Text = (string) o["text"], TypeName = "Section"};
+            _classMap["Header"] = o => new Template()
+            {
+                Text = (string) o["text"],
+                TypeName = "Header"
+            };
+            _classMap["Paragraph"] = o => new Template()
+            {
+                Text = (string) o["text"],
+                TypeName = "Paragraph"
+            };
+            _classMap["Section"] = o => new Template()
+            {
+                Text = (string) o["text"],
+                TypeName = "Section"
+            };
             _classMap["Selection"] = o => new Selection()
             {
                 Text = (string) o["text"],
