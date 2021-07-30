@@ -5,6 +5,7 @@
         public string Uuid;
         public int ParticipantId;
         public int TaskId;
+        public bool IsUsingVr;
         public string TaskCode;
         public string CompletedAt;
         public TaskResultData Results;

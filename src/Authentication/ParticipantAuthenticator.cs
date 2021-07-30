@@ -105,7 +105,7 @@ namespace Vreval.Platform.Authentication
 
         public async Task<string> MakeParticipantLogEntry(string code, string bearerToken, ParticipantLogEntry entry)
         {
-            var request = new RestRequest($"/codes/{code}/log", Method.POST);
+            var request = new RestRequest($"/codes/{code}/logs", Method.POST);
             request.AddHeader("Accept", "application/json");
             request.AddHeader("X-Auth-Token", Environment.GetEnvironmentVariable("APP_TOKEN"));
             request.AddHeader("Authorization", $"Bearer {bearerToken}");
